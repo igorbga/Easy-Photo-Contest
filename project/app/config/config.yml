@@ -67,3 +67,25 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+oneup_flysystem:
+    adapters:
+        epc_storage_adapter:
+            local:
+                directory: "%kernel.root_dir%/data/storage"
+
+    filesystems:
+        epc_storage_fs:
+            adapter: epc_storage_adapter
+            mount: epc_storage_fs
+vich_uploader:
+    db_driver: orm # or mongodb or propel or phpcr
+    storage:   flysystem
+
+    mappings:
+        epc_storage:
+            uri_prefix:         /easy-photo-contest/
+            upload_destination: epc_storage_fs    
+
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true

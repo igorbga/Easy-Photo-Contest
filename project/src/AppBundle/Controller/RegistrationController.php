@@ -25,7 +25,6 @@ class RegistrationController extends Controller {
 			$em->persist ( $registration );
 			$em->flush ();
 			
-			$fs = $container->get('oneup_flysystem.epc_storage_filesystem');
 			return $this->redirectToRoute ( 'registration_success' );
 		}
 		
